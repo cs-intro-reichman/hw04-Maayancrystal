@@ -22,21 +22,141 @@ public class StringOps {
     //////                                               ///////
     ////////////////////////////////////////////////////////////
     public static void main(String[] args) {
-        
+        System.out.println(capVowelsLowRest("One two THRee world"));
+          
     }
 
     public static String capVowelsLowRest (String string) {
-        // Write your code here:
-        return "";
+        String newString = "";
+        for (int i = 0 ; i < string.length() ; i++){
+            char ch = string.charAt(i);
+            if(isVowel(ch) == true){
+                if(ch >= 'a' && ch <= 'z')
+                ch = (char)(ch - 32);
+            }
+            else{
+                if (ch >= 'A' && ch <= 'Z'){
+                    ch = (char)(ch + 32);
+                  }
+                  else{
+                    ch = (char)(ch + 0);
+                  }
+            }
+            newString = newString + ch;
+        }
+        return newString;
     }
 
     public static String camelCase (String string) {
-        // Write your code here:
-        return "";
+        int spaceindex = -1;
+        String newString = "";
+          for(int i = 0 ; i < string.length() ; i++){ //deletes all the spaces at the start of the string
+            if(string.charAt(i) == ' '){
+                spaceindex = i;     
+            }
+            else{
+                break;
+            }
+          } 
+
+          string = string.substring(spaceindex + 1); 
+          spaceindex = string.length();
+          if(string.indexOf(' ') >= 0){
+            spaceindex = string.indexOf(' ');
+          }
+
+          for(int i = 0 ; i < spaceindex ; i++){ //changing the first word to lower case
+            char ch = string.charAt(i);
+            if( ch >= 'A' && ch <= 'Z'){
+                ch = (char)(ch + 32);
+            }
+            newString = newString + ch;
+          }
+
+          boolean needC = true;
+          string = string.substring(spaceindex) ;
+
+          for (int i = 0; i < string.length() ; i++){ 
+          char ch = string.charAt(i);
+            if (ch == ' '){
+            needC = true;  
+            }
+                else{
+                     if (needC == true && ch >= 'a' && ch <= 'z'){
+                ch = (char)(ch - 32);
+                    }
+                    else{
+                         if (needC == false && ch >= 'A' && ch <= 'Z'){
+                         ch = (char)(ch + 32);
+                        }
+                     }
+                needC = false;
+                newString = newString + ch;
+                }
+            
+            
+          }
+
+        return newString;
     }
 
     public static int[] allIndexOf (String string, char chr) {
-        // Write your code here:
-        return new int[1];
+        int counter = 0;
+        for (int i = 0 ; i < string.length() ; i++){
+            if(string.charAt(i) == chr){
+                counter++;
+            }
+        }
+
+        int[] arr = new int[counter];
+        int index = 0;
+        for (int i = 0 ; i < string.length() ; i++){
+            if(string.charAt(i) == chr){
+                arr[index] = i;
+                index++;
+                
+            }
+        }
+        return arr;
     }
+
+    public static boolean isVowel (char ch) {
+        boolean isVowel = false;
+        switch (ch) {
+            case 'a': 
+                isVowel = true;
+                break;
+            case 'A': 
+                isVowel = true;
+                break;
+            case 'e': 
+                isVowel = true;
+                break;
+            case 'E': 
+                isVowel = true;
+                break;   
+            case 'i': 
+                isVowel = true;
+                break; 
+            case 'I': 
+                isVowel = true;
+                break;
+            case 'o': 
+                isVowel = true;
+                break; 
+            case 'O':
+                isVowel = true;
+                break;
+            case 'u': 
+                isVowel = true;
+                break;
+            case 'U': 
+                isVowel = true;
+                break;
+        
+        }
+        return isVowel;
+    }
+
+
 }
