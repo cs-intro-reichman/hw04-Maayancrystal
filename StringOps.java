@@ -22,14 +22,7 @@ public class StringOps {
     //////                                               ///////
     ////////////////////////////////////////////////////////////
     public static void main(String[] args) {
-        System.out.println(camelCase("   Intro to coMPUter sCiEnce "));
-        
-        //String string = "hello   World";
-        //System.out.println(camelCase(string)); // “hEllO wOrld”;
-        //System.out.println(capVowlesLowRest(“One two tHRee world”)); // “OnE twO thrEE wOrld”;
-        //System.out.println(capVowlesLowRest(“vowels are fun”)); // “vOwEls ArE fUn”;
-        //System.out.println(capVowlesLowRest(“intro”)); // “IntrO”;
-        //System.out.println(capVowelsLowRest(“yellow”)); // “yEllOw”;
+        System.out.println(camelCase("Hello world"));
           
     }
 
@@ -54,7 +47,7 @@ public class StringOps {
     }
 
     public static String camelCase (String string) {
-        int spaceindex = string.length() + 1;
+        int spaceindex = -1;
         String newString = "";
           for(int i = 0 ; i < string.length() ; i++){ //deletes all the spaces at the start of the string
             if(string.charAt(i) == ' '){
