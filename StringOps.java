@@ -22,8 +22,12 @@ public class StringOps {
     //////                                               ///////
     ////////////////////////////////////////////////////////////
     public static void main(String[] args) {
-        String string = "yellow";
-        System.out.println(capVowelsLowRest(string)); // “hEllO wOrld”;
+        int [] arr = allIndexOf("hello world", ' ');
+        for(int i = 0 ; i < arr.length ; i++){
+            System.out.println(arr[i]);
+        }
+        //String string = "hello   World";
+        //System.out.println(camelCase(string)); // “hEllO wOrld”;
         //System.out.println(capVowlesLowRest(“One two tHRee world”)); // “OnE twO thrEE wOrld”;
         //System.out.println(capVowlesLowRest(“vowels are fun”)); // “vOwEls ArE fUn”;
         //System.out.println(capVowlesLowRest(“intro”)); // “IntrO”;
@@ -52,13 +56,50 @@ public class StringOps {
     }
 
     public static String camelCase (String string) {
-        // Write your code here:
-        return "";
+        int spaceIndex = string.indexOf(32);
+        String newString = "";
+        
+            for(int i = 0 ; i < string.length() ; i++){
+                if (string.charAt(i) == 0){
+                spaceIndex = i;
+                i++;
+                }
+                else{
+                    string = string.substring(spaceIndex+1);
+                    spaceIndex = string.indexOf(32); //finds the end of the first word in the string
+                    int counter = 0; 
+                     while(counter < spaceIndex){ //changes the first word to lowercase
+                        char ch = string.charAt(counter);
+                         if (ch >= 'A' && ch <= 'Z'){
+                              ch = (char)(ch + 32);
+                          }
+                        newString = newString + ch;
+                        counter++; 
+                 }
+                }
+            }
+             
+        return newString;
     }
 
     public static int[] allIndexOf (String string, char chr) {
-        // Write your code here:
-        return new int[1];
+        int counter = 0;
+        for (int i = 0 ; i < string.length() ; i++){
+            if(string.charAt(i) == chr){
+                counter++;
+            }
+        }
+
+        int[] arr = new int[counter];
+        int index = 0;
+        for (int i = 0 ; i < string.length() ; i++){
+            if(string.charAt(i) == chr){
+                arr[index] = i;
+                index++;
+                
+            }
+        }
+        return arr;
     }
 
     public static boolean isVowel (char ch) {
@@ -83,4 +124,6 @@ public class StringOps {
         }
         return isVowel;
     }
+
+
 }
