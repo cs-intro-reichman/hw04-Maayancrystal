@@ -22,7 +22,7 @@ public class StringOps {
     //////                                               ///////
     ////////////////////////////////////////////////////////////
     public static void main(String[] args) {
-        System.out.println(camelCase("Hello world"));
+        System.out.println(capVowelsLowRest("One two THRee world"));
           
     }
 
@@ -30,7 +30,8 @@ public class StringOps {
         String newString = "";
         for (int i = 0 ; i < string.length() ; i++){
             char ch = string.charAt(i);
-            if(isVowel(ch) == true ){
+            if(isVowel(ch) == true){
+                if(ch >= 'a' && ch <= 'z')
                 ch = (char)(ch - 32);
             }
             else{
@@ -125,16 +126,31 @@ public class StringOps {
             case 'a': 
                 isVowel = true;
                 break;
+            case 'A': 
+                isVowel = true;
+                break;
             case 'e': 
+                isVowel = true;
+                break;
+            case 'E': 
                 isVowel = true;
                 break;   
             case 'i': 
                 isVowel = true;
                 break; 
+            case 'I': 
+                isVowel = true;
+                break;
             case 'o': 
                 isVowel = true;
                 break; 
+            case 'O':
+                isVowel = true;
+                break;
             case 'u': 
+                isVowel = true;
+                break;
+            case 'U': 
                 isVowel = true;
                 break;
         
