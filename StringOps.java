@@ -22,10 +22,8 @@ public class StringOps {
     //////                                               ///////
     ////////////////////////////////////////////////////////////
     public static void main(String[] args) {
-        int [] arr = allIndexOf("hello world", ' ');
-        for(int i = 0 ; i < arr.length ; i++){
-            System.out.println(arr[i]);
-        }
+        System.out.println(camelCase("   Intro to coMPUter sCiEnce "));
+        
         //String string = "hello   World";
         //System.out.println(camelCase(string)); // “hEllO wOrld”;
         //System.out.println(capVowlesLowRest(“One two tHRee world”)); // “OnE twO thrEE wOrld”;
@@ -56,29 +54,55 @@ public class StringOps {
     }
 
     public static String camelCase (String string) {
-        int spaceIndex = string.indexOf(32);
+        int spaceindex = string.length() + 1;
         String newString = "";
-        
-            for(int i = 0 ; i < string.length() ; i++){
-                if (string.charAt(i) == 0){
-                spaceIndex = i;
-                i++;
-                }
-                else{
-                    string = string.substring(spaceIndex+1);
-                    spaceIndex = string.indexOf(32); //finds the end of the first word in the string
-                    int counter = 0; 
-                     while(counter < spaceIndex){ //changes the first word to lowercase
-                        char ch = string.charAt(counter);
-                         if (ch >= 'A' && ch <= 'Z'){
-                              ch = (char)(ch + 32);
-                          }
-                        newString = newString + ch;
-                        counter++; 
-                 }
-                }
+          for(int i = 0 ; i < string.length() ; i++){ //deletes all the spaces at the start of the string
+            if(string.charAt(i) == ' '){
+                spaceindex = i;     
             }
-             
+            else{
+                break;
+            }
+          } 
+
+          string = string.substring(spaceindex + 1); 
+          spaceindex = string.length();
+          if(string.indexOf(' ') >= 0){
+            spaceindex = string.indexOf(' ');
+          }
+
+          for(int i = 0 ; i < spaceindex ; i++){ //changing the first word to lower case
+            char ch = string.charAt(i);
+            if( ch >= 'A' && ch <= 'Z'){
+                ch = (char)(ch + 32);
+            }
+            newString = newString + ch;
+          }
+
+          boolean needC = true;
+          string = string.substring(spaceindex) ;
+
+          for (int i = 0; i < string.length() ; i++){ 
+          char ch = string.charAt(i);
+            if (ch == ' '){
+            needC = true;  
+            }
+                else{
+                     if (needC == true && ch >= 'a' && ch <= 'z'){
+                ch = (char)(ch - 32);
+                    }
+                    else{
+                         if (needC == false && ch >= 'A' && ch <= 'Z'){
+                         ch = (char)(ch + 32);
+                        }
+                     }
+                needC = false;
+                newString = newString + ch;
+                }
+            
+            
+          }
+
         return newString;
     }
 
